@@ -10,7 +10,7 @@ import {
 import Sidebar from "../components/Sidebar/Sidebar";
 import Navbar from "../components/Navbar/Navbar";
 
-export default function Home() {
+export default function Teachers() {
 	useEffect(() => {
 		console.log(GetCookie("role"));
 		console.log(GetSessionStorage("role"));
