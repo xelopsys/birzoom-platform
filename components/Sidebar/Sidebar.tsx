@@ -1,30 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../Logo";
-import { IoHome } from "react-icons/io5";
-import { BsFillPersonFill } from "react-icons/bs";
 import { Icon } from "../Icon/Icon";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { GetLocalStorage } from "../getCookie/getCookie";
+import { routes } from "../lang/lang";
 export default function Sidebar() {
 	const router = useRouter();
+	const [route, setRoute] = useState<any>([...routes.EN]);
+	const { locale, asPath } = useRouter();
 
-	const routes = [
-		{
-			name: "dashboard",
-			path: "/",
-			Icon: IoHome,
-		},
-		{
-			name: "teachers",
-			path: "/teachers",
-			Icon: BsFillPersonFill,
-		},
-		// {
-		// 	name: "teachers/create",
-		// 	path: "/teachers/create",
-		// 	Icon: IoHome,
-		// },
-	];
+	useEffect(() => {
+		locale === "en" ? setRoute([...routes.EN]) : setRoute([...routes.UZ]);
+	}, [router.asPath, locale]);
+	// console.log(route[0]);
 
 	return (
 		<div className="h-[100vh] w-56 flex flex-col justify-start items-start align-middle border-r bg-white">
@@ -34,7 +23,7 @@ export default function Sidebar() {
 			<div className="h-100 w-56 pl-4 pt-[25px] pr-4">
 				<p className="text-secondary font-semibold text-sm mb-4">ASOSIY</p>
 
-				{routes.map((route, index) => {
+				{route.map((route: any, index: number) => {
 					return (
 						<Link href={route.path} key={index} passHref>
 							<a
