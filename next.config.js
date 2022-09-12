@@ -8,6 +8,10 @@ const nextConfig = {
     //  default locale used when the non-locale paths are visited
     defaultLocale: "en",
   },
+  images: {
+    domains: ['john-mohamed.com'],
+  },
+
 }
 
 module.exports = nextConfig
