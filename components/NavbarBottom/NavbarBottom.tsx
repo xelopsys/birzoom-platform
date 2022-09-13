@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { GetCookie } from "../getCookie/getCookie";
+import { Excel } from "../Excel/Excel";
 
 export function NavbarBottom(props: any) {
 	const { locale, asPath } = useRouter();
@@ -11,6 +12,7 @@ export function NavbarBottom(props: any) {
 	const [search, setSearch] = useState<string>("");
 	const currentValue = useRef<string>(search);
 	//
+
 	useEffect(() => {
 		setRole(GetCookie("role"));
 	}, [asPath]);
@@ -82,9 +84,7 @@ export function NavbarBottom(props: any) {
 			</div>
 			{role === "admin" && (
 				<div className="flex flex-row justify-center items-center  mr-[25px] mt-[24px]">
-					<button className="py-2 px-3 border rounded-md mr-3 bg-white flex justify-center items-center cursor-pointer">
-						Excel
-					</button>
+					<Excel data={props.users} />
 					<Link href="/teachers/create">
 						<span className=" bg-primary py-2 px-3 text-white rounded-md flex justify-center items-center cursor-pointer ">
 							{" "}

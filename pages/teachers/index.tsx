@@ -82,6 +82,7 @@ export default function Teachers() {
 				<div className="w-full">
 					<Navbar />
 					<NavbarBottom
+						users={users}
 						setSearchValue={setSearchValue}
 						setCategoryValue={setCategoryValue}
 					/>
