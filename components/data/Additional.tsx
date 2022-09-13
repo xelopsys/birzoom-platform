@@ -325,4 +325,5 @@ export interface MyFormValues {
 	interests: string[];
 	photo: any;
 	createdAt: Date;
+	updatedAt?: Date;
 }

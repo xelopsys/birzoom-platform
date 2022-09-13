@@ -55,6 +55,13 @@ export default function Teachers() {
 						return user.region
 							.toLowerCase()
 							.includes(searchValue.toLowerCase());
+					case "all":
+						return (
+							user.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+							user.surname.toLowerCase().includes(searchValue.toLowerCase()) ||
+							user.number.toString().includes(searchValue) ||
+							user.region.toLowerCase().includes(searchValue.toLowerCase())
+						);
 					default:
 						return null;
 				}

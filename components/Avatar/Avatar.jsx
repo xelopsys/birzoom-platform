@@ -6,6 +6,7 @@ import {
 	RemoveAllSessionStorage,
 } from "../getCookie/getCookie";
 import { useRouter } from "next/router";
+import Link from "next/link"
 // import { type } from "os";
 
 export function Avatar() {
@@ -54,9 +55,11 @@ export function Avatar() {
 							aria-labelledby="avatarButton"
 						>
 							<li>
-								<a href="#" className="block py-2 px-4 hover:bg-gray-100">
+								<Link href="/teachers/create" >
+								<a className="block py-2 px-4 hover:bg-gray-100">
 									{locale === "en" ? "Create" : "Yaratish"}
-								</a>
+									</a>
+								</Link>
 							</li>
 						</ul>
 					)}
