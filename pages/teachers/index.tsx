@@ -39,6 +39,29 @@ export default function Teachers() {
 		setUsersPerPage([...users.slice(indexOfFirstRecord, indexOfLastRecord)]);
 	}, [users, currentPage]);
 
+	useEffect(() => {
+		setUsersPerPage([
+			...users.filter((user) => {
+				switch (categoryValue) {
+					case "name":
+						return user.name.toLowerCase().includes(searchValue.toLowerCase());
+					case "surname":
+						return user.surname
+							.toLowerCase()
+							.includes(searchValue.toLowerCase());
+					case "number":
+						return user.number.toString().includes(searchValue);
+					case "region":
+						return user.region
+							.toLowerCase()
+							.includes(searchValue.toLowerCase());
+					default:
+						return null;
+				}
+			}),
+		]);
+	}, [searchValue]);
+
 	return (
 		<div className="w-[100vw] h-[100vh] m-0 p-0 bg-bgColor">
 			<Head>
@@ -62,7 +85,7 @@ export default function Teachers() {
 							currentPage={currentPage}
 						/>
 					</div>
-					<div className="w-full h-auto my-6 px-4">
+					<div className="w-full h-auto text-center content-center my-6 px-4">
 						<Pagination
 							setCurrentPage={setCurrentPage}
 							userLength={users.length}

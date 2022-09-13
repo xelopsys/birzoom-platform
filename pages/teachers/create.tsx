@@ -15,6 +15,7 @@ import Select from "react-select";
 import { setDoc, doc } from "firebase/firestore";
 import { storage, db } from "../../firebase/firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { Information } from "../../components/Information/Information";
 
 export default function Create() {
 	const router = useRouter();
@@ -26,6 +27,7 @@ export default function Create() {
 	const [text, setText] = useState<string>("");
 	const [uploadMessage, setUploadMessage] = useState<string>("");
 	const [cancel, setCancel] = useState<unknown>();
+	const [isId, setIsId] = useState<string>("");
 
 	const optionsValue = [
 		{
@@ -83,8 +85,8 @@ export default function Create() {
 					<div className="w-full">
 						<Navbar />
 					</div>
-					<div className="w-full h-full bg-gray-100 overflow-y-hidden">
-						<Formik
+					<div className="w-full h-full bg-gray-100 overflow-y-hidden scrollbar-hide">
+						{/* <Formik
 							initialValues={initialValues}
 							onSubmit={(values, actions) => {
 								actions.setSubmitting(false);
@@ -132,6 +134,7 @@ export default function Create() {
 													console.log("File available at", downloadURL);
 													values.photo = downloadURL;
 													const id = new Date().getTime().toString();
+													setIsId(id);
 													await setDoc(doc(db, "mockdata", id), {
 														id: new Date().getTime(),
 														locale: locale,
@@ -269,10 +272,10 @@ export default function Create() {
 																				(value: any, index: number) => (
 																					<option
 																						key={index}
-																						value={value}
+																						value={value.value}
 																						disabled={index === 0}
 																					>
-																						{value}
+																						{value.label}
 																					</option>
 																				)
 																			)}
@@ -379,7 +382,9 @@ export default function Create() {
 									</Form>
 								);
 							}}
-						</Formik>
+						</Formik> */}
+
+						<Information />
 					</div>
 				</div>
 			</div>
@@ -398,7 +403,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 	) {
 		return {
 			redirect: {
-				destination: "/signin",
+				destination: "/teachers",
 				permanent: false,
 			},
 		};

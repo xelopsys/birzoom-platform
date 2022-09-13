@@ -112,7 +112,7 @@ export function Additional() {
 				name: "type_of_activity",
 				defaultValue: locale == "en" ? "Activity" : "Faoliyat turi",
 				label: locale == "en" ? "Type of activity" : "Faoliyat turi",
-				names:
+				values:
 					locale == "en"
 						? [
 								{
@@ -142,7 +142,7 @@ export function Additional() {
 				name: "subjects",
 				defaultValue: locale == "en" ? "Subjects" : "Fanlar",
 				label: locale == "en" ? "Subjects" : "Fanlar",
-				names:
+				values:
 					locale == "en"
 						? [
 								{
@@ -196,7 +196,7 @@ export function Additional() {
 				name: "language_level",
 				defaultValue: locale == "en" ? "Levels" : "Til darajasi",
 				label: locale == "en" ? "Language level" : "Til darajasi",
-				names:
+				values:
 					locale == "en"
 						? [
 								{
@@ -256,7 +256,7 @@ export function Additional() {
 				name: "active",
 				defaultValue: locale == "en" ? "Active" : "Faolligi",
 				label: locale == "en" ? "isActive" : "Faol",
-				names:
+				values:
 					locale == "en"
 						? [
 								{
@@ -271,11 +271,21 @@ export function Additional() {
 									value: "noactive",
 									label: "noactive",
 								},
-								"Active",
-								"active",
-								"noactive",
 						  ]
-						: ["Faolligi", "faol", "nofaol"],
+						: [
+								{
+									value: "Active",
+									label: "Faolligi",
+								},
+								{
+									value: "active",
+									label: "faol",
+								},
+								{
+									value: "noactive",
+									label: "nofaol",
+								},
+						  ],
 				// values: ["Active", "active", "noactive"],
 				required: true,
 			},

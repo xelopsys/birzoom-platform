@@ -12,6 +12,7 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import Navbar from "../components/Navbar/Navbar";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
+import { Profile } from "../components/Profile/Profile";
 
 export default function Home() {
 	const router = useRouter();
@@ -35,8 +36,13 @@ export default function Home() {
 
 			<div className="w-full h-full flex flex-row ">
 				<Sidebar />
-				<div className="w-full ">
-					<Navbar />
+				<div className="w-full h-fit flex-col">
+					<div className="w-full ">
+						<Navbar />
+					</div>
+					<div className="w-full h-full flex-row justify-center items-center">
+						<Profile />
+					</div>
 				</div>
 			</div>
 		</div>
