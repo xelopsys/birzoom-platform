@@ -1,76 +1,79 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
+import { useRouter } from "next/router";
 
 export function Checkbox() {
+	const { locale } = useRouter();
+
 	const interests = [
 		{
 			index: 0,
-			id: "kitoblar",
-			name: "Kitoblar",
+			id: "books",
+			name: locale == "en" ? "books" : "kitoblar",
 			checked: false,
 			type: "checkbox",
-			value: "kitoblar",
-			htmlFor: "kitoblar",
+			value: "books",
+			htmlFor: "books",
 			img: "/basketball.svg",
 		},
 		{
 			index: 1,
-			id: "sayohat",
-			name: "Sayohat",
+			id: "travel",
+			name: locale == "en" ? "travel" : "sayohat",
 			checked: false,
 			type: "checkbox",
-			value: "sayohat",
-			htmlFor: "sayohat",
+			value: "travel",
+			htmlFor: "travel",
 			img: "/basketball.svg",
 		},
 		{
 			index: 2,
-			id: "texnologiya",
-			name: "Texnologiya",
+			id: "technology",
+			name: locale == "en" ? "technology" : "texnologiya",
 			checked: false,
 			type: "checkbox",
-			value: "texnologiya",
-			htmlFor: "texnologiya",
+			value: "technology",
+			htmlFor: "technology",
 			img: "/basketball.svg",
 		},
 		{
 			index: 3,
-			id: "filmlar",
-			name: "Filmlar",
+			id: "movies",
+			name: locale == "en" ? "movies" : "filmlar",
 			checked: false,
 			type: "checkbox",
-			value: "filmlar",
-			htmlFor: "filmlar",
+			value: "movies",
+			htmlFor: "movies",
 			img: "/basketball.svg",
 		},
 		{
 			index: 4,
-			id: "multfilmlar",
-			name: "Multfilmlar",
+			id: "cartoons",
+			name: locale == "en" ? "cartoons" : "multfilmlar",
 			checked: false,
 			type: "checkbox",
-			value: "multfilmlar",
-			htmlFor: "multfilmlar",
+			value: "cartoons",
+			htmlFor: "cartoons",
 			img: "/basketball.svg",
 		},
 		{
 			index: 5,
-			id: "iqtisod",
-			name: "Iqtisod",
+			id: "finance",
+			name: locale == "en" ? "finance" : "iqtisod",
 			checked: false,
 			type: "checkbox",
-			value: "iqtisod",
-			htmlFor: "iqtisod",
+			value: "finance",
+			htmlFor: "finance",
 			img: "/basketball.svg",
 		},
 	];
 
 	return (
-		<div className="w-full h-full flex flex-row justify-center items-center">
-			<div className="flex flex-row content-center w-full md:grid-cols-3">
+		<div className="w-full h-full flex flex-row justify-center items-center box-border">
+			<div className="flex flex-row  content-center w-full md:grid-cols-3 box-border">
 				<div
-					className="flex w-full h-fit gap-x-3 flex-row justify-evenly items-center"
-					role="group"
+					className="flex flex-wrap justify-center items-center w-full h-fit gap-3 flex-row box-border"
+					// role="group"
 					aria-labelledby="checkbox-group"
 				>
 					{interests.map((interest: any, index: number) => {

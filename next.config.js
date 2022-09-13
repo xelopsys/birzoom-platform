@@ -9,7 +9,7 @@ const nextConfig = {
     defaultLocale: "en",
   },
   images: {
-    domains: ['john-mohamed.com'],
+    domains: ['john-mohamed.com', 'firebasestorage.googleapis.com', "media.glamour.com", "i.pinimg.com", "w7.pngwing.com"],
   },
 
 }

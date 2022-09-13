@@ -16,8 +16,6 @@ import { GetServerSideProps } from "next";
 export default function Home() {
 	const router = useRouter();
 	useEffect(() => {
-		console.log(GetCookie("role"));
-		console.log(GetSessionStorage("role"));
 		if (
 			GetCookie("role") === undefined ||
 			GetCookie("role") === "" ||

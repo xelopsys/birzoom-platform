@@ -9,6 +9,7 @@ import { getAuth } from "firebase/auth";
 const firebaseConfig = {
     apiKey: "AIzaSyA9j2NyZMEjzrtBTrCI3P-mWppwInBdTq4",
     authDomain: "birzoom-cf74e.firebaseapp.com",
+    databaseURL: "https://birzoom-cf74e-default-rtdb.firebaseio.com",
     projectId: "birzoom-cf74e",
     storageBucket: "birzoom-cf74e.appspot.com",
     messagingSenderId: "1003781725914",

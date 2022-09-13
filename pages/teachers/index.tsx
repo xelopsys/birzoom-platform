@@ -2,43 +2,26 @@ import type { NextPage } from "next";
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import {
-	GetCookie,
-	GetSessionStorage,
-} from "../../components/getCookie/getCookie";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import { NavbarBottom } from "../../components/NavbarBottom/NavbarBottom";
-import {
-	collection,
-	getDocs,
-	doc,
-	deleteDoc,
-	onSnapshot,
-	setDoc,
-} from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db, storage } from "../../firebase/firebase";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
-import bcrypt from "bcryptjs";
-
+import { Table } from "../../components/Table/Table";
+import Pagination from "../../components/Pagination/Pagination";
 export default function Teachers() {
 	const [searchValue, setSearchValue] = useState("");
 	const [categoryValue, setCategoryValue] = useState("");
-	const [users, setUsers] = useState<any>([]);
+	const [users, setUsers] = useState<any[]>([]);
 	const { locale, asPath } = useRouter();
-	const [selected, setSelected] = useState<any>([]);
-	// useEffect(() => {
-	// 	console.log(GetCookie("role"));
-	// 	console.log(GetSessionStorage("role"));
-	// }, []);
-
-	const handleAddToSelected = (e: any) => {
-		setSelected((prev: any) =>
-			!prev.includes(e.target.value) ? prev.push(e.target.value) : prev
-		);
-	};
+	const [isUpdated, setIsUpdated] = useState<boolean>(false);
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [usersPerPage, setUsersPerPage] = useState<any[]>([]);
+	const [recordsPerPage] = useState<number>(5);
+	const indexOfLastRecord = currentPage * recordsPerPage;
+	const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -50,45 +33,11 @@ export default function Teachers() {
 			});
 		};
 		fetchData();
-	}, []);
+	}, [isUpdated]);
 
-	console.log("users", users);
-	console.log("selected", selected);
-	// useEffect(() => {
-	// 	const uploadTask = async () => {
-	// 		const id = new Date().getTime().toString();
-	// 		await setDoc(doc(db, "mockdata", id), {
-	// 			id: id,
-	// 			locale: locale,
-	// 			name: "Yusuf",
-	// 			surname: "Miralimov",
-	// 			gender: "male",
-	// 			region: "Toshkent, Mizo Ulug`bek tumani",
-	// 			number: "+99899 9210301",
-	// 			password:
-	// 				"$2a$12$iDEYpZWQB9iVi76CAC1p8OJE9Rkt7N91OV0GtCjMvq3jmcSnYVtKG",
-	// 			email: "yusuf@gmail.com",
-	// 			birthday: "1995-06-11",
-	// 			tg_username: "yusuf",
-	// 			type_of_activity: "O`qituvchi",
-	// 			subjects: "Fizika",
-	// 			language_level: "Intermediate",
-	// 			card_number: "8600000000000000",
-	// 			moto: "alwasy be happy",
-	// 			availability: {
-	// 				active: false,
-	// 			},
-	// 			zoom_link: "",
-	// 			level_of_teaching: [],
-	// 			interests: [],
-	// 			photo:
-	// 				"https://media.glamour.com/photos/56957dad085ae0a85036df9e/master/pass/entertainment-2013-08-harry-styles-blue-steel-main.jpg",
-	// 			createdAt: new Date(Date.now()).toISOString(),
-	// 		});
-	// 	};
-
-	// 	uploadTask();
-	// }, []);
+	useEffect(() => {
+		setUsersPerPage([...users.slice(indexOfFirstRecord, indexOfLastRecord)]);
+	}, [users, currentPage]);
 
 	return (
 		<div className="w-[100vw] h-[100vh] m-0 p-0 bg-bgColor">
@@ -106,19 +55,19 @@ export default function Teachers() {
 						setSearchValue={setSearchValue}
 						setCategoryValue={setCategoryValue}
 					/>
-					<select
-						name="selected"
-						id="selected"
-						onChange={handleAddToSelected}
-						defaultValue="All"
-					>
-						<option value="All" disabled>
-							{locale === "uz" ? "Hammasi" : "All"}
-						</option>
-						<option value="Beginner">Beginner</option>
-						<option value="Intermediate">Intermediate</option>
-						<option value="Advanced">Advanced</option>
-					</select>
+					<div className="w-full h-auto my-6 px-4">
+						<Table
+							users={usersPerPage}
+							isUpdated={setIsUpdated}
+							currentPage={currentPage}
+						/>
+					</div>
+					<div className="w-full h-auto my-6 px-4">
+						<Pagination
+							setCurrentPage={setCurrentPage}
+							userLength={users.length}
+						/>
+					</div>
 				</div>
 			</div>
 		</div>
