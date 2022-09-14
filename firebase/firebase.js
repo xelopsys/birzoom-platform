@@ -7,13 +7,13 @@ import { getAuth } from "firebase/auth";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyA9j2NyZMEjzrtBTrCI3P-mWppwInBdTq4",
-    authDomain: "birzoom-cf74e.firebaseapp.com",
-    databaseURL: "https://birzoom-cf74e-default-rtdb.firebaseio.com",
-    projectId: "birzoom-cf74e",
-    storageBucket: "birzoom-cf74e.appspot.com",
-    messagingSenderId: "1003781725914",
-    appId: "1:1003781725914:web:21d25b1df269b2760b4fe3"
+    apiKey: process.env.NEXT_PUBLIC_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+    databaseURL: process.env.NEXT_PUBLIC_DATABASE_URL,
+    projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_APP_ID
 };
 
 // Initialize Firebase
